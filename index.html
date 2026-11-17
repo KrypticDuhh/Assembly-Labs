@@ -69,19 +69,22 @@ button.p{background:var(--acc);color:var(--accink);border-color:var(--acc)}
 .cmpg{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}.cmpg h3{font-size:13px;margin:0 0 4px}.cmpg pre{margin:0;padding:10px;background:var(--code);border:1px solid var(--line);border-radius:8px;font-size:12px;overflow-x:auto;min-height:2em}
 [hidden]{display:none!important}.cvi{font:inherit;padding:6px 10px;margin:8px 0;border:1px solid var(--line);border-radius:8px;background:var(--code);color:var(--ink)}.rft{width:100%;border-collapse:collapse;font-size:13px}.rft td{padding:5px 8px;border-bottom:1px dashed var(--line);vertical-align:top}.nr{display:flex;gap:8px;margin-top:18px}
 .setr{display:flex;flex-wrap:wrap;gap:12px;align-items:center;font-size:13px}.setr .cvi{margin:0}
+.wt{outline:2px dashed var(--acc);outline-offset:1px}
+.ulog{max-height:260px;overflow:auto;font-size:13px;border:1px solid var(--line);border-radius:8px;padding:4px 14px;background:var(--code)}.ulog h3{font-size:14px;margin:12px 0 4px}.ulog ul{margin:0 0 6px;padding-left:18px}
 </style>
 </head>
 <body>
 <div class="app">
 <aside>
   <div class="brand">Assembly Lab</div>
-  <div class="sub">Learn real assembly by running it. Works fully offline.</div>
+  <div class="sub">Learn real assembly by running it. Works fully offline. v2.2</div>
   <button class="b" id="dbtn" style="margin:0 8px 16px;width:calc(100% - 16px)">Progress and settings</button>
   <nav id="nav" aria-label="Lessons"></nav>
   <button class="b" id="rsb" style="margin:6px 8px 0;width:calc(100% - 16px)">Restart project</button>
 </aside>
 <main>
-  <div class="card" id="dash" hidden style="margin-bottom:16px"><h2>Your progress</h2><div id="dstats"></div><div id="dbars"></div><h2 style="margin-top:16px">Settings</h2><div class="setr"><label>Theme <select class="cvi" id="s_theme"><option value="">Auto</option><option value="light">Light</option><option value="dark">Dark</option></select></label><label>Editor text <select class="cvi" id="s_fs"><option>13</option><option>14</option><option>16</option><option>18</option></select></label><label>Registers show <select class="cvi" id="s_hex"><option value="">Decimal</option><option value="1">Hex</option></select></label><label>Play speed <select class="cvi" id="s_sp"><option value="slow">Slow</option><option value="normal">Normal</option><option value="fast">Fast</option></select></label><label>Plain-English hints <select class="cvi" id="s_ex"><option value="1">On</option><option value="0">Off</option></select></label></div><h2 style="margin-top:16px">Save, move or reset</h2><p class="note" style="margin:0 0 6px">Progress and your code save in this browser automatically. Export a backup to move it to another device.</p><textarea id="dbk" class="cvi" style="min-height:70px" placeholder="Export fills this box. Paste a backup here and press Import."></textarea><div class="tools" style="padding:8px 0 0"><button class="b" id="d_ex">Export</button><button class="b" id="d_im">Import</button><button class="b" id="d_ra">Reset this architecture only</button>
+  <div class="card" id="dash" hidden style="margin-bottom:16px"><h2>Your progress</h2><div id="dstats"></div><div id="dbars"></div><h2 style="margin-top:16px">Settings</h2><div class="setr"><label>Theme <select class="cvi" id="s_theme"><option value="">Auto</option><option value="light">Light</option><option value="dark">Dark</option></select></label><label>Editor text <select class="cvi" id="s_fs"><option>13</option><option>14</option><option>16</option><option>18</option></select></label><label>Registers show <select class="cvi" id="s_hex"><option value="">Decimal</option><option value="1">Hex</option></select></label><label>Play speed <select class="cvi" id="s_sp"><option value="slow">Slow</option><option value="normal">Normal</option><option value="fast">Fast</option></select></label><label>Plain-English hints <select class="cvi" id="s_ex"><option value="1">On</option><option value="0">Off</option></select></label></div><h2 style="margin-top:16px">Update log</h2><div class="ulog"><h3>v2.2: Verified lessons, clearer help, time-travel debugging</h3><ul><li>Self-test: every lesson solution was run through the simulator on all five architectures (143 of 143 pass), and no starter code passes by accident.</li><li>Fixed a bug found by the self-test: on x86-64, byte reads and writes could corrupt text longer than seven characters. The Reading input and Shout capstone lessons now work correctly.</li><li>Rewrote the explanations of the 13 early lessons (registers through factorial) in plainer language.</li><li>Rewrote the last hint level for every lesson so it uses your real register names and no jargon.</li><li>New Back button steps the program backwards one instruction at a time (up to 3000 steps). Alt+Left goes back and Alt+Right steps forward.</li><li>New breakpoints box: type line numbers, and Run or Play pauses just before that line.</li><li>New watch box: list registers or [addresses], and Run or Play pauses when one changes, telling you the old value, the new value and the line. Watched registers get a dashed outline.</li><li>The &quot;next&quot; bar now shows the line number of the next instruction.</li></ul><h3>v2.1: Reset buttons and detailed hints</h3><ul><li>Restart project button in the sidebar. It changes to &quot;You finished!&quot; once every lesson on an architecture is done.</li><li>Reset this architecture only, and Reset all progress (settings are kept). Both need two clicks.</li><li>Hints now have three levels: what the lesson asks in plain words, a numbered plan with the instructions you will use, and a near-answer.</li></ul><h3>v2.0: Offline file and real assembler</h3><ul><li>Everything ships as one HTML file with no internet needed.</li><li>New Assemble button produces real machine code for x86, x86-64, ARM, MIPS and PowerPC, with addresses, labels, endianness, Copy hex and Download .bin.</li><li>51 encodings were checked against known-correct machine code.</li></ul><h3>v1.9: Progress and options</h3><ul><li>Progress dashboard: rank, XP, streak, first-try count and a bar per architecture.</li><li>Code autosave per lesson, Starter code button, export, import and backup.</li><li>Play mode with speed setting, plain-English explanation of the next instruction, theme, text size and hex or decimal registers.</li><li>New lesson: Capstone: count to five.</li></ul><h3>v1.8: Input</h3><ul><li>Console input box and the read system call.</li><li>New lessons: Reading input, Capstone: shout.</li></ul><h3>v1.7: System calls and debugging</h3><ul><li>Console panel and the exit and write system calls with each architecture&#x27;s real numbers.</li><li>New lessons: System calls: exit, Hello world.</li><li>New Debugging level with four bug hunts, plus the Trace button.</li></ul><h3>v1.6: Bytes, strings and stack frames</h3><ul><li>Byte-level memory with endianness (x86, x86-64 and ARM little-endian; MIPS and PowerPC big-endian).</li><li>New lessons: Bytes and endianness, Strings, Nested calls, Recursion and stack frames.</li></ul><h3>v1.5: Zero to one</h3><ul><li>Basics level with reading lessons and a number converter.</li><li>New lessons: Negative numbers, Even or odd, Fibonacci, Greatest common divisor, Playground.</li><li>Instruction Reference and the road-to-pro lesson.</li></ul><h3>v1.4: Compare and architecture lessons</h3><ul><li>Compare syntaxes shows one solution in all five architectures.</li><li>New lessons: ARM conditional execution, x86 scaled addressing.</li></ul><h3>v1.3: Five architectures</h3><ul><li>x86, x86-64, ARM, MIPS and PowerPC, each with its own syntax, registers and rules.</li></ul><h3>v1.0: First release</h3><ul><li>Four levels (Noob, Beginner, Intermediate, Pro), 11 lessons, an in-browser x86-style simulator, clean light and dark interface.</li></ul></div>
+<h2 style="margin-top:16px">Save, move or reset</h2><p class="note" style="margin:0 0 6px">Progress and your code save in this browser automatically. Export a backup to move it to another device.</p><textarea id="dbk" class="cvi" style="min-height:70px" placeholder="Export fills this box. Paste a backup here and press Import."></textarea><div class="tools" style="padding:8px 0 0"><button class="b" id="d_ex">Export</button><button class="b" id="d_im">Import</button><button class="b" id="d_ra">Reset this architecture only</button>
 <button class="b" id="d_rs">Reset all progress</button></div></div>
   <div class="archs" id="archs" role="tablist" aria-label="Architecture"></div>
   <div class="note" id="note"></div>
@@ -96,6 +99,7 @@ button.p{background:var(--acc);color:var(--accink);border-color:var(--acc)}
       <button class="b p" id="run">Run</button>
       <button class="b" id="pl">Play</button>
       <button class="b" id="step">Step</button>
+      <button class="b" id="bk">Back</button>
       <button class="b" id="reset">Reset</button>
       <button class="b" id="stc">Starter code</button>
       <button class="b" id="hint">Hint</button>
@@ -107,6 +111,7 @@ button.p{background:var(--acc);color:var(--accink);border-color:var(--acc)}
       <span class="next mono" id="next"></span>
     </div>
   </div>
+  <div class="tools" id="dbgrow" style="margin:8px 0 0;padding:0;border:0;gap:14px"><label style="font-size:13px">Breakpoints (line numbers) <input class="cvi" id="bps" placeholder="e.g. 3, 7" style="margin:0 0 0 6px;width:130px"></label><label style="font-size:13px">Watch (registers or [addresses]) <input class="cvi" id="wts" placeholder="e.g. eax, [704]" style="margin:0 0 0 6px;width:170px"></label></div>
   <div class="card" id="hintbox" hidden style="margin:12px 0"></div>
   <div class="note" id="expl"></div>
   <div class="status" id="status" role="status"></div>
@@ -188,7 +193,7 @@ const L=[
 ];
 /* ---------- state ---------- */
 const $=s=>document.querySelector(s);
-let ar='x86',AR=AX.x86,cur=0,prog=[],labels={},st,ch=new Set(),started=false,done={},tm=null,M={att:{},f1:{},days:{},code:{},set:{}};
+let ar='x86',AR=AX.x86,cur=0,prog=[],labels={},st,ch=new Set(),started=false,done={},tm=null,HS=[],BP=new Set(),WT={},lastBP=-1,wmsg='',M={att:{},f1:{},days:{},code:{},set:{}};
 try{M=Object.assign(M,JSON.parse(localStorage.getItem('asm-meta')||'{}'));done=JSON.parse(localStorage.getItem('asm-done2')||'{}');if(AX[localStorage.getItem('asm-arch')])ar=localStorage.getItem('asm-arch')}catch(e){}
 AR=AX[ar];
 function save(){try{localStorage.setItem('asm-done2',JSON.stringify(done));localStorage.setItem('asm-meta',JSON.stringify(M));localStorage.setItem('asm-arch',ar)}catch(e){}}
@@ -212,7 +217,7 @@ function parse(src){prog=[];labels={};src.split('\n').forEach((raw,i)=>{let l=ra
  while((m=l.match(/^([A-Za-z_.]\w*):\s*(.*)$/))){labels[m[1]]=prog.length;l=m[2]}
  if(!l)return;const sp=l.search(/\s/);
  prog.push({op:(sp<0?l:l.slice(0,sp)).toLowerCase(),args:sp<0?[]:splitArgs(l.slice(sp)),line:i,text:l})})}
-function initState(){const r={};AR.reg.forEach(k=>r[k]=0);r[AR.sp]=256;if(AR.lr)r[AR.lr]=-1;st={r,zf:0,sf:0,mem:{},out:'',tr:[],ip:0,n:0,done:false,err:false};ch=new Set();started=false}
+function initState(){HS=[];lastBP=-1;const r={};AR.reg.forEach(k=>r[k]=0);r[AR.sp]=256;if(AR.lr)r[AR.lr]=-1;st={r,zf:0,sf:0,mem:{},out:'',tr:[],ip:0,n:0,done:false,err:false};ch=new Set();started=false}
 function addr(a){a=a.toLowerCase();let m;
  if(a[0]==='['){let s=0;for(const p of a.slice(1,-1).replace(/#/g,'').replace(/,/g,'+').replace(/\s/g,'').split(/(?=[+-])/)){const g=p[0]==='-'?-1:1,b=p.replace(/^[+-]/,'');s+=g*b.split('*').reduce((m,t)=>m*(isReg(t)?rv(t):num(t)),1)}return s}
  m=a.match(/^(-?\w*)\((.+)\)$/);
@@ -223,16 +228,16 @@ function val(a){a=a.toLowerCase().replace(/^#/,'');if(/^-?(0x[0-9a-f]+|\d+)$/.te
 function put(a,v){a=a.toLowerCase();if(AR.W<8)v|=0;if(a==='$zero')return;
  if(isReg(a)){st.r[a]=v;ch.add(a)}else if(a[0]==='['){const d=addr(a);st.mem[d]=v;ch.add('m'+d)}else throw Error('Cannot write to "'+a+'"')}
 const flags=v=>{st.zf=v===0?1:0;st.sf=v<0?1:0};
-const bo=a=>{const W=AR.W,w=a-(((a%W)+W)%W),k=a-w;return[w,AR.be?W-1-k:k]};
-const bget=a=>{const[w,k]=bo(a),v=st.mem[w]||0;return Math.floor((AR.W<8?v>>>0:v)/2**(8*k))%256};
-const bput=(a,b)=>{const[w,k]=bo(a);let v=st.mem[w]||0;if(AR.W<8)v>>>=0;const old=Math.floor(v/2**(8*k))%256;v+=((b&255)-old)*2**(8*k);if(AR.W<8)v|=0;st.mem[w]=v;ch.add('m'+w)};
+const bo=a=>{const W=Math.min(AR.W,4),w=a-(((a%W)+W)%W),k=a-w;return[w,AR.be?W-1-k:k]};
+const bget=a=>{const[w,k]=bo(a),v=st.mem[w]||0;return Math.floor((v>>>0)/2**(8*k))%256};
+const bput=(a,b)=>{const[w,k]=bo(a);let v=(st.mem[w]||0)>>>0;const old=Math.floor(v/2**(8*k))%256;v+=((b&255)-old)*2**(8*k);v|=0;st.mem[w]=v;ch.add('m'+w)};
 function sysc(o,A){if(o==='int'&&val(A[0])!==128)throw Error('Only int 0x80 is supported');const n=st.r[AR.m.N];
  if(n===AR.sc.x){st.done=true;st.exit=st.r[AR.m.F];return}
  if(n===AR.sc.w){const f=st.r[AR.m.F],b=st.r[AR.m.U],l=st.r[AR.m.Z];if(f!==1)throw Error('write: only file descriptor 1 (the console) exists here');for(let i=0;i<l;i++)st.out+=String.fromCharCode(bget(b+i));st.r[AR.sc.rr]=l;ch.add(AR.sc.rr);return}
  if(n===AR.sc.r){const f=st.r[AR.m.F],b=st.r[AR.m.U],l=st.r[AR.m.Z];if(f!==0)throw Error('read: only file descriptor 0 (program input) exists here');let c=0;while(c<l&&st.ip0<st.inp.length){bput(b+c,st.inp.charCodeAt(st.ip0++));c++}st.r[AR.sc.rr]=c;ch.add(AR.sc.rr);return}
  if(n===0&&AR.sc.r!==0){st.done=true;return}
  throw Error('Unknown system call number '+n+' on '+AR.n+'. Check the Reference.')}
-const bytesOf=v=>{const n=AR.W;return [...Array(n).keys()].map(i=>(Math.floor((n<8?v>>>0:v)/2**(8*(AR.be?n-1-i:i)))%256).toString(16).padStart(2,'0')).join(' ')};
+const bytesOf=v=>{const n=Math.min(AR.W,4);return [...Array(n).keys()].map(i=>(Math.floor((n<8?v>>>0:v)/2**(8*(AR.be?n-1-i:i)))%256).toString(16).padStart(2,'0')).join(' ')};
 const BR={je:'eq',jz:'eq',jne:'ne',jnz:'ne',jg:'gt',jl:'lt',jge:'ge',jle:'le',beq:'eq',bne:'ne',bgt:'gt',blt:'lt',bge:'ge',ble:'le'};
 const AL={add:'add',addi:'add',adds:'add',sub:'sub',subi:'sub',subs:'sub',imul:'mul',mul:'mul',mullw:'mul',and:'and',andi:'and','andi.':'and',ands:'and',or:'or',orr:'or',ori:'or',xor:'xor',eor:'xor',xori:'xor',shl:'shl',lsl:'shl',sll:'shl',slwi:'shl',shr:'shr',lsr:'shr',srl:'shr',srwi:'shr'};
 const FN={add:(a,b)=>a+b,sub:(a,b)=>a-b,mul:(a,b)=>a*b,and:(a,b)=>a&b,or:(a,b)=>a|b,xor:(a,b)=>a^b,shl:(a,b)=>AR.W===8?a*2**b:a<<b,shr:(a,b)=>a>>>b};
@@ -272,11 +277,10 @@ function exec(p){const A=p.args,sp=AR.sp;let o=p.op,nx=st.ip+1;
  st.ip=nx;if(nx<0||nx>=prog.length)st.done=true}
 function step(){
  if(!started){try{parse($('#src').value)}catch(e){return say(e.message,'bad')}started=true;M.att[dk(cur)]=(M.att[dk(cur)]||0)+1;M.days[new Date().toISOString().slice(0,10)]=1;save();st.inp=$('#stdin').value+'\n';st.ip0=0;if(!prog.length)st.done=true}
- if(st.done)return false;ch=new Set();const p=prog[st.ip];
+ if(st.done)return false;ch=new Set();const p=prog[st.ip];HS.push(JSON.stringify(st));if(HS.length>3000)HS.shift();
  try{exec(p);st.n++;st.tr.push((p.line+1)+': '+p.text+[...ch].filter(k=>k[0]!=='m').map(k=>'   '+k+'='+st.r[k]).join(''))}catch(e){st.done=true;st.err=true;say('Line '+(p.line+1)+': '+e.message,'bad')}
  if(st.done&&!st.err)finish();return !st.done}
-function run(){if(st.done)reset();let i=0;while(step()&&i++<5000);
- if(!st.done){st.done=true;say('Stopped after 5000 steps. Check your loop for a missing counter or jump.','bad')}render()}
+
 const g=k=>st.r[AR.m[k]],mw=(b,i)=>st.mem[b+i*AR.W];
 function finish(){const q=L[cur];
  if(q.free){done[dk(cur)]=1;save();say('Finished in '+st.n+' steps. Check the registers and memory panels to see what your program did.','ok');nav();return}
@@ -285,11 +289,11 @@ function finish(){const q=L[cur];
 function say(m,c){const e=$('#status');e.className='status show '+(c||'');e.textContent=m}
 function reset(){if(tm)stopP();initState();$('#status').className='status';render()}
 function render(){
- $('#regs').innerHTML=AR.reg.map(r=>{const v=st.r[r];return`<div class="reg${ch.has(r)?' chg':''}"><b>${r}</b><span class="mono">${M.set.hex?'0x'+(v>>>0).toString(16).toUpperCase():v}</span><small class="mono">${M.set.hex?v:'0x'+(v>>>0).toString(16).toUpperCase()}</small></div>`}).join('');
+ $('#regs').innerHTML=AR.reg.map(r=>{const v=st.r[r];return`<div class="reg${ch.has(r)?' chg':''}${WT[r]?' wt':''}"><b>${r}</b><span class="mono">${M.set.hex?'0x'+(v>>>0).toString(16).toUpperCase():v}</span><small class="mono">${M.set.hex?v:'0x'+(v>>>0).toString(16).toUpperCase()}</small></div>`}).join('');
  $('#flags').innerHTML=AR.fl?`<span class="flag${st.zf?' on':''}">ZF zero</span><span class="flag${st.sf?' on':''}">SF negative</span>`:'<span class="empty">No flags on MIPS: branches compare registers directly.</span>';
  const ks=Object.keys(st.mem).map(Number).sort((a,b)=>a-b);
  $('#mem').innerHTML=ks.length?ks.map(k=>`<div class="memrow mono${ch.has('m'+k)?' chg':''}"><span>[${k}]${k>=st.r[AR.sp]&&k<256?' <em>stack</em>':''}</span><em>${bytesOf(st.mem[k])}</em><b>${st.mem[k]}</b></div>`).join(''):'<div class="empty">Nothing stored yet.</div>';
- $('#con').textContent=st.out||'(no output yet)';$('#trp').textContent=st.tr.length?st.tr.slice(-40).join('\n'):'(run or step to record the trace)';const p=prog[st.ip];$('#expl').textContent=started&&!st.done&&p&&M.set.ex!==0?'In plain English: '+EX(p):'';$('#next').textContent=started&&!st.done&&p?'next: '+p.text:(st.done&&started?'finished':'')}
+ $('#con').textContent=st.out||'(no output yet)';$('#trp').textContent=st.tr.length?st.tr.slice(-40).join('\n'):'(run or step to record the trace)';const p=prog[st.ip];$('#expl').textContent=started&&!st.done&&p&&M.set.ex!==0?'In plain English: '+EX(p):'';$('#next').textContent=started&&!st.done&&p?'next (line '+(p.line+1)+'): '+p.text:(st.done&&started?'finished':'')}
 /* ---------- UI ---------- */
 function nav(){const fin=seq().filter(i=>done[dk(i)]).length;$('#rsb').textContent=fin>=seq().length?'You finished '+AR.n+'! Restart project':'Restart project';$('#dbtn').textContent='Progress and settings ('+Object.keys(done).length+' done)';
  $('#archs').innerHTML=Object.keys(AX).map(k=>`<button role="tab" aria-selected="${k===ar}" class="${k===ar?'on':''}" data-a="${k}">${AX[k].n}</button>`).join('');
@@ -304,7 +308,7 @@ function zn(z){return z==='cmp'?(AR.fl?' Here a compare instruction sets the fla
 function open(i){if(!vis(L[i]))i=0;cur=i;const q=L[i],v=LV[q.l];
  $('#note').textContent=AR.note;
  $('#chip').innerHTML=`<span class="dot" style="background:${v[1]}"></span>${v[0]} level, lesson ${seq().indexOf(i)+1} of ${seq().length}`;
- $('#title').textContent=q.t;$('#text').innerHTML=fmt(q.x)+(q.z?zn(q.z):'');$('#goal').innerHTML='<b>Goal:</b> '+fmt(q.g);
+ $('#title').textContent=q.t;$('#text').innerHTML=fmt(XD[q.t]||q.x)+(q.z?zn(q.z):'');$('#goal').innerHTML='<b>Goal:</b> '+fmt(q.g);
  const ops=[...new Set(src(q,'s').split('\n').filter(l=>l&&!/:$/.test(l)&&l[0]!==AR.c).map(l=>l.trim().split(/\s/)[0]))];
  $('#new').innerHTML='Instructions used: '+ops.map(x=>`<code>${x}</code>`).join(' ');
  $('#src').value=M.code[dk(i)]??src(q,'c');nav();reset();cmpRender();refRender();view(q);scrollTo({top:0})}
@@ -321,7 +325,7 @@ const DS={li:'Put a number in a register',mv:'Copy one register into another',ad
 const sb=(o,d)=>d===1?(/^(call|jmp)$/.test(o)?'label':AR.m.A):d===2?(/^(li|adda|addb|subb|andi|shl)$/.test(o)?'n':/^(ld|st|ldb|stb)$/.test(o)?AR.m.P:o==='dnz'?'label':AR.m.B):(/^(ld|st|ldb|stb)$/.test(o)?'off':'label');
 function refRender(){const b=$('#rfbox');if(b.hidden)return;$('#rfh').textContent='Instruction reference for '+AR.n;const t=TP[ar];
  $('#rft').innerHTML=Object.keys(DS).filter(o=>t[o]).map(o=>`<tr><td>${DS[o]}</td><td class="mono">${t[o].replace(/<(\d)>/g,(_,d)=>sb(o,+d)).replace(/~/g,AR.c).replace(/&/g,'&amp;').replace(/</g,'&lt;').split('\n').join('<br>')}</td></tr>`).join('')}
-function view(q){hl=0;hintRender();const f=!!q.info;$('#conbox').hidden=!q.sys;['.ed','.mach','#goal','#new','#note','#status'].forEach(s=>$(s).hidden=f);$('#nl').textContent=f?'Got it, next lesson':'Next lesson';
+function view(q){hl=0;hintRender();const f=!!q.info;$('#conbox').hidden=!q.sys;['.ed','#dbgrow','.mach','#goal','#new','#note','#status'].forEach(s=>$(s).hidden=f);$('#nl').textContent=f?'Got it, next lesson':'Next lesson';
  const ci=$('#cvi');if(ci)ci.oninput=()=>{const n=Number(ci.value);$('#cvo').textContent=ci.value!==''&&Number.isInteger(n)&&n>=0?'binary '+n.toString(2)+'   hex 0x'+n.toString(16).toUpperCase():''}}
 $('#stdin').addEventListener('input',reset);
 $('#tr').onclick=()=>{const b=$('#trbox');b.hidden=!b.hidden;$('#tr').textContent=b.hidden?'Trace':'Hide trace'};
@@ -335,7 +339,7 @@ const EX=p=>{const A=p.args,o=p.op,a=A.join(', ');
  return t?t+(A.length&&!/^(Return|Stop|Do nothing)/.test(t)?' '+a:''):''};
 function applySet(){const s=M.set,d=document.documentElement;if(s.theme)d.dataset.theme=s.theme;else delete d.dataset.theme;$('#src').style.fontSize=(s.fs||14)+'px'}
 function stopP(){clearInterval(tm);tm=null;$('#pl').textContent='Play'}
-$('#pl').onclick=()=>{if(tm)return stopP();if(st.done)reset();$('#pl').textContent='Pause';tm=setInterval(()=>{if(!step())stopP();render()},({slow:700,normal:300,fast:80})[M.set.sp||'normal'])};
+$('#pl').onclick=()=>{if(tm)return stopP();if(st.done)reset();getBP();getWT();$('#pl').textContent='Pause';tm=setInterval(()=>{const bl=hitBP();if(bl){stopP();say('Paused at the breakpoint on line '+bl+'. Press Play to continue, Step for one line, or Back to undo.');render();return}if(!stepW()){stopP();if(wmsg){say(wmsg);wmsg=''}}render()},({slow:700,normal:300,fast:80})[M.set.sp||'normal'])};
 $('#stc').onclick=()=>{delete M.code[dk(cur)];save();$('#src').value=src(L[cur],'c');reset()};
 const iso=x=>x.toISOString().slice(0,10),NM=()=>({att:{},f1:{},days:{},code:{},set:{}});
 function dashRender(){const tot=k=>L.filter(q=>!q.only||q.only.includes(k)).length,dn=k=>Object.keys(done).filter(x=>x.startsWith(k+':')).length;
@@ -514,9 +518,67 @@ function hintRender(){const b=$('#hintbox'),q=L[cur];if(!hl||q.info||q.free){b.h
  let h='<h2>Hint '+hl+' of 3</h2><p style="margin:0 0 8px"><b>What the lesson is asking, in plain words</b><br>'+fmt(H[0])+'</p>';
  if(hl>=2){h+='<p style="margin:0 0 4px"><b>A plan you can follow</b></p><ol style="margin:0 0 8px;padding-left:20px">'+H[1].split('|').map(x=>'<li>'+fmt(x)+'</li>').join('')+'</ol>';
   if(ops.length)h+='<p style="margin:0 0 4px"><b>Instructions you will use on '+AR.n+'</b></p><ul style="margin:0 0 8px;padding-left:20px">'+ops.map(o=>'<li><code class="mono">'+TP[ar][o].replace(/<(\d)>/g,(_,d)=>sb(o,+d)).replace(/~/g,AR.c).replace(/&/g,'&amp;').replace(/</g,'&lt;').split('\n').join(' ; ')+'</code> '+DS[o]+'</li>').join('')+'</ul>'}
- if(hl>=3)h+='<p style="margin:0 0 4px"><b>Almost there</b><br>'+fmt(q.h).replace(/\b([ABCP])\b/g,(_,k)=>AR.m[k]).replace(/\bdnz\b/g,'the count-down-and-jump instructions')+'</p><p class="note" style="margin:6px 0 0">Still stuck? Press Show solution, step through it one line at a time, then close it and try writing it yourself.</p>';
+ if(hl>=3)h+='<p style="margin:0 0 4px"><b>Almost there</b><br>'+(HX[q.t]?fmt(HX[q.t]):fmt(q.h).replace(/\b([ABCP])\b/g,(_,k)=>AR.m[k]).replace(/\bdnz\b/g,'the count-down-and-jump instructions'))+'</p><p class="note" style="margin:6px 0 0">Still stuck? Press Show solution, step through it one line at a time, then close it and try writing it yourself.</p>';
  b.hidden=false;b.innerHTML=h;$('#hint').textContent=hl>=3?'Hint (all shown)':'Next hint ('+hl+'/3)'}
 $('#hint').onclick=()=>{hl=Math.min(3,hl+1);hintRender()};
+const XD={
+'Meet the registers':'Inside the processor there are a handful of tiny storage boxes called <b>registers</b>. Each holds one number, and nearly everything a program does starts by getting a number into a register. The starter code already uses the instruction that loads a number into a register. Anything after <code>{CM}</code> is a comment: a note for humans that the computer ignores.',
+'Copying values':'Registers can be copied into each other. Copying does not empty the source: after copying {A} into {B}, both hold the same number. Programs do this constantly, for example to keep a backup of a value before changing it.',
+'Basic math':'The processor can add and subtract numbers that sit in registers. The answer goes into a register too, replacing what was there. On x86 the first register is both an input and the answer. On ARM, MIPS and PowerPC you name the destination first, then the two inputs, so the answer can go somewhere else.',
+'Negative numbers':'Registers hold negative numbers too, using a scheme called twos complement. You do not need to work it out: subtracting a bigger number from a smaller one simply gives a negative result. The registers panel shows -7 in decimal, while the hex view looks enormous because it shows the same bits read as an unsigned number.',
+'Compare and branch':'Programs need to make decisions. The processor does it in two steps: it <b>compares</b> two numbers, then <b>branches</b>, which means jumping elsewhere in the code if a condition holds (for example greater than). A place you can jump to is marked with a <b>label</b>, a name ending in a colon. If the branch is not taken, execution just carries on with the next line.',
+'Loops':'A loop repeats code. Put a label at the top, a jump back to it at the bottom, and a <b>counter</b> that eventually reaches zero so the loop can stop. Counting down to zero is popular because the processor can jump while the result is not zero, with no separate comparison. Step through it and watch the counter and the total change.',
+'Even or odd':'In binary, a number is odd exactly when its lowest digit is 1. The AND instruction keeps only the digits that are 1 in both numbers, so AND with 1 isolates the lowest digit: 0 for even, 1 for odd. Combine that with a branch to run an instruction only for odd numbers.',
+'Memory':'Registers are few, so bigger data lives in <b>memory</b>: a long row of numbered boxes. A box number is an <b>address</b>. To use memory, keep an address in a register and load from or store to that address plus an offset. Each value here takes {W} bytes, so the offsets in the starter code count in whole words.',
+'The stack':'The stack is a pile of values in memory. <b>Push</b> puts a value on top and <b>pop</b> takes the top one off, so the last value in is the first out. A register called the stack pointer ({SP}) always remembers where the top is, and the pile grows downward in memory. Functions use it to save things temporarily.',
+'Bits':'Every number is stored as bits, and some instructions work on the bits directly. <b>AND</b> keeps matching 1 bits. <b>Shift left</b> by n slides every bit n places over, which multiplies by 2 to the power n. Shifting is the fast way to multiply by 2, 4, 8 and so on.',
+'Functions':'A <b>function</b> is a named block of code you can run from many places. A <b>call</b> jumps to it and remembers where you came from, and a <b>return</b> jumps back. Your main code must stop (halt or exit) before the function body begins, or it would run straight into it by accident.',
+'Arrays':'An array is several values stored side by side. Keep the address of the first in a pointer register, load a value, then move the pointer forward one word to reach the next. Combine that with a counter loop to visit every element.',
+'Factorial':'Factorial of n multiplies every whole number from n down to 1, so 6 factorial is 720. A counting-down loop that multiplies a running total by the counter does it neatly.'};
+const HX={
+'Meet the registers':'Replace the 0 with 42 so the line loads 42 into {A}.',
+'Copying values':'You need two copy lines: one copying {A} into {B} and one copying {A} into {C}.',
+'Basic math':'One line: add {B} to {A}. Do not change {B}.',
+'Negative numbers':'One line: subtract {B} from {A}. 3 minus 10 is -7.',
+'Compare and branch':'After loading both numbers: branch to first if {A} is greater than {B}. Otherwise copy {B} into {C} and jump to end. At first: copy {A} into {C}. Finish with the label end.',
+'Loops':'Inside the loop you need two things: add {C} to {A}, then the count-down-and-jump instruction on {C} pointing back at the label total.',
+'Even or odd':'Copy {A} into {C}, AND {C} with 1, branch to done if {C} equals {B}, load 1 into {B}, then write the label done.',
+'Memory':'Load offset 0 into {A}, offset 1 into {B}, add {B} to {A}, load offset 2 into {B}, add {B} to {A}.',
+'The stack':'Three pops in a row: first into {A}, then {B}, then {C}.',
+'Bits':'Copy {A} into {B} then AND {B} with 1. Copy {A} into {C} then shift {C} left by 2.',
+'Conditional execution':'After the compare, write exactly two lines: movgt r2, r0 and movle r2, r1.',
+'Scaled addressing':'mov {A}, [{P}+{C}*{W}] loads the element: start {P}, index {C}, size {W}.',
+'Bytes and endianness':'Add one byte-load of offset 0 from {P} into {B}, then compare the answer with your prediction.',
+'System calls: exit':'Three lines: put {EXIT} in {N}, put 7 in {F}, then run {SYS}.',
+'Functions':'Under double: add {A} to itself, then return.',
+'Arrays':'After the setup: zero {A}, set {C} to 5, then loop with a label: load into {B} from {P}, add {B} to {A}, move {P} forward one word, count {C} down and jump back.',
+'Factorial':'Label again: multiply {A} by {C}, then count {C} down and jump back to again.',
+'Fibonacci':'Each round: copy {A} into {P}, add {B} to {P}, copy {B} into {A}, copy {P} into {B}, then count {C} down and jump back to fib.',
+'Greatest common divisor':'If equal, jump to done. If {A} is greater, jump to bigger. Otherwise subtract {A} from {B} and jump to loop. At bigger: subtract {B} from {A} and jump to loop.',
+'Strings':'Label scan, then: load a byte from {P} into {A}, branch to done if it equals {B} (zero), add 1 to {C}, add 1 to {P}, jump back to scan.',
+'Nested calls':'Under quad: save the return address, call double, call double, restore the return address, return.',
+'Recursion and stack frames':'fact: load 1 into {B}; if {C} is at most {B} branch to base; save the return address; push {C}; subtract 1 from {C}; call fact; pop {C}; multiply {A} by {C}; restore the return address; return. base: load 1 into {A}; return.',
+'Hello, world':'Write call then exit call, each followed by {SYS}: write is {WRITE} with 1, 600, 4; exit is {EXIT} with 0.',
+'Reading input':'Copy {RET} into {Z} immediately after the read call, before loading anything into {N}.',
+'Capstone: shout':'Reload {B} with the constant you need before each comparison (10, then 97, then 122). The length to write is the end pointer minus 704, plus 1.',
+'Capstone: count to five':'Calls overwrite registers, so after every write call reload the pointer and the counter from address 720.',
+'Bug hunt: off by one':'Change the number loaded into {C} from 4 to 5.',
+'Bug hunt: the stack leak':'Add one more pop (into {B}) at the end.',
+'Bug hunt: the endless loop':'Replace the final jump with the count-down-and-jump instruction on {C}.',
+'Bug hunt: the wrong branch':'Change the less-than branch into a greater-than branch.'};
+function getBP(){BP=new Set($('#bps').value.split(/[ ,]+/).map(Number).filter(Boolean))}
+function getWT(){WT={};$('#wts').value.split(/[ ,]+/).filter(Boolean).forEach(t=>WT[t.toLowerCase()]=1)}
+function hitBP(){const p=prog[st.ip];if(started&&!st.done&&p&&BP.has(p.line+1)&&lastBP!==st.n){lastBP=st.n;return p.line+1}lastBP=-1;return 0}
+const wvals=()=>Object.keys(WT).map(k=>[k,k[0]==='['?st.mem[+k.slice(1,-1)]||0:st.r[k]]);
+function stepW(){const pl=prog[st.ip],b=wvals(),r=step();if(st.done)return r;const a=wvals();for(let i=0;i<a.length;i++)if(a[i][1]!==b[i][1]){wmsg='Watchpoint: '+a[i][0]+' changed from '+b[i][1]+' to '+a[i][1]+(pl?' (line '+(pl.line+1)+')':'');return false}return r}
+function back(){if(tm)stopP();if(!HS.length)return say('Nothing to undo: you are at the start.');st=JSON.parse(HS.pop());ch=new Set();started=true;render();say('Stepped back one instruction.')}
+function run(){if(st.done)reset();getBP();getWT();let i=0;
+ while(true){const bl=hitBP();if(bl){say('Paused at the breakpoint on line '+bl+'. Press Run to continue, Step for one line, or Back to undo.');render();return}
+  if(!stepW()){if(wmsg){say(wmsg);wmsg=''}break}
+  if(++i>5000){st.done=true;say('Stopped after 5000 steps. Check your loop for a missing counter or jump.','bad');break}}
+ render()}
+$('#bk').onclick=back;$('#bps').addEventListener('input',getBP);$('#wts').addEventListener('input',()=>{getWT();render()});
+document.addEventListener('keydown',e=>{if(!e.altKey)return;if(e.key==='ArrowRight'){e.preventDefault();step();render()}else if(e.key==='ArrowLeft'){e.preventDefault();back()}});
 function cmpRender(){asmRender();if($('#cmpbox').hidden)return;const q=L[cur];
  $('#cmpg').innerHTML=Object.keys(AX).filter(k=>!q.only||q.only.includes(k)).map(k=>{const sv=ar;ar=k;AR=AX[k];const s=src(q,'s');ar=sv;AR=AX[sv];return`<div><h3>${AX[k].n}</h3><pre>${s.replace(/&/g,'&amp;').replace(/</g,'&lt;')}</pre></div>`}).join('')}
 $('#cmp').onclick=()=>{const b=$('#cmpbox');b.hidden=!b.hidden;$('#cmp').textContent=b.hidden?'Compare syntaxes':'Hide comparison';cmpRender()};
